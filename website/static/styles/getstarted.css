@@ -1,0 +1,44 @@
+.logo{
+    color: #fff;
+}
+
+.nav-link{
+    color: #ffff;
+}
+
+body{
+    background-color: #0656F1;
+}
+
+#container{
+    color: #fff;
+}
+
+.getstarted .button{
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: #ffff;
+    border-radius: 50px;
+    height: 60px;
+    width: 150px;
+    border: 0;
+}
+
+.getstarted{
+    text-align: center;
+}
+
+.button i{
+color: #0656F1;
+font-size: 24px;
+}
+
+.button .link{
+    text-decoration: none;
+    color: #ffff;
+}
+
+
