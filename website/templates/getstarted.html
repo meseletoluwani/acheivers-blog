@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block head %}
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/getstarted.css') }}">
+    <title>Get Started</title>
+    <script src="https://kit.fontawesome.com/23315ae06f.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+
+{% endblock %}
+
+{% block nav1 %}
+    Home
+{% endblock %}
+{% block nav2 %}
+    Get Started
+{% endblock %}
+{% block nav3 %}
+    Sign In
+{% endblock %}
+
+{% block content %}
+<div class="getstarted">
+    <h1>Create a Blog Without Limits</h1>
+    <p>Let's help you write, design and create your own blog from scratch</p>
+    <div class="button">
+        <a href="/signup" class="link">Get Started</a>
+        <i class="fa-solid fa-arrow-right-long fa-beat"></i>
+    </div>
+   
+</div>
+
+{% endblock %}
+        
+               
+
+
