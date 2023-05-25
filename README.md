@@ -1,1 +1,3 @@
-# acheivers-blog
+## Achievers Blog
+
+Achievers Blog is a blog hosting platform that allows users to create an account and, by doing so, have access to a blog of their own. The major aim behind this project is to help people express themselves through writing and interact with others and their interests through blog posts. Each user has the ability to see others' posts, write their own blog posts on a topic of their choice, and like and comment on others' blog posts
