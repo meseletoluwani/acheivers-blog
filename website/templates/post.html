@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block head %}
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/auth.css') }}">
+    <title>Create a Post</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+
+{% endblock %}
+
+{% block nav1 %}
+    Home
+{% endblock %}
+{% block nav2 %}
+    Dashboard
+{% endblock %}
+{% block nav3 %}
+    Sign Out
+{% endblock %}
+{% block content %}
+<div class="form-container">
+            
+    <h1>Fill in what you want to talk about in the input below</h1>
+    <p>Blog Details</p>
+    
+    <div class="form">
+        <form method="post" action="/post">
+            <label for="title">Enter Blog Title</label>
+            <input class="form-control"  type="text" name="title" id="title">
+
+            <label for="image">Add blog image link</label>
+            <input class="form-control" type="url" name="image" id="image">
+
+            <label for="content">Enter the blog content below</label>
+            <textarea class="form-control" type="text" name="content" id="content" cols="30" rows="10"></textarea>
+            <button type="submit">Create Post</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

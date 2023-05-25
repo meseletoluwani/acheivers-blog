@@ -1,35 +1,41 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends "base.html" %}
+{% block head %}
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/auth.css') }}">
     <title>Sign In</title>
-    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/signup.css') }}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
-</head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>Achiever's Blog</h1>
-        </div>
-        <div class="form-container">
-            
-            <h1>Welcome back, Sign in</h1>
-            
-            <div class="form">
-                <form method="post" action="/signin">
-                    <label for="username">Username</label>
-                    <input type="text" name="username" id="username" placeholder="Enter your username">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
 
-                    <label for="password">Password</label>
-                    <input type="text" name="password" id="password" placeholder="Enter your password">
-                    <br></br>
-                    <button type="submit">Sign In</button>
-                </form>
-            </div>
-        </div>
+{% endblock %}
+
+{% block nav1 %}
+    Home
+{% endblock %}
+{% block nav4 %}
+    Get Started
+{% endblock %}
+{% block nav5 %}
+    Sign In
+{% endblock %}
+{% block content %}
+<div class="form-container">
+            
+    <h1>Welcome back, Sign in</h1>
+    
+    <div class="form">
+        <form method="post" action="/signin">
+            <label for="username">Username</label>
+            <input class="form-control"  type="text" name="username" id="username">
+
+            <label for="password">Password</label>
+            <input class="form-control" type="text" name="password" id="password">
+            <button type="submit">Sign In</button>
+        </form>
     </div>
-</body>
-</html>
+    <p>Don't have an account yet? <a href="/signup">Sign up now</a></p>
+</div>
+{% endblock %}
+        
+               
+
+
