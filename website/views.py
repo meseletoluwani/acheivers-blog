@@ -6,5 +6,9 @@ views = Blueprint("views", __name__)
 
 @views.route("/")
 def home():
-    return "Hello"
+    posts = post.query.all("home.html", user=current_user, posts= user.post)
 
+return render_template()
+
+
+ 
