@@ -9,14 +9,14 @@ views = Blueprint("views", __name__)
 
 @views.route("/")
 def home():
-    posts = post.query.all("home.html", user=current_user, posts= user.post)
-
-<<<<<<< HEAD
-return render_template()
+    posts = Post.query.all()
+    return render_template("home.html", user=current_user, posts=posts)
 
 
- 
-=======
+@views.route("/dashboard")
+def dashboard():
+    posts = Post.query.all()
+    return render_template("dashboard.html", user=current_user, posts=posts)
 
 @views.route("/getstarted")
 def getStarted():
@@ -44,4 +44,3 @@ def create_post():
             return redirect(url_for("views.home"))
     return render_template("post.html", user=current_user)
 
->>>>>>> c86bdd0861493bff226a0ca2a56612cf985593de
