@@ -14,6 +14,7 @@ def home():
 
 
 @views.route("/dashboard")
+@login_required
 def dashboard():
     posts = Post.query.all()
     return render_template("dashboard.html", user=current_user, posts=posts)
