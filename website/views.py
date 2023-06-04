@@ -17,8 +17,9 @@ def home():
 @views.route("/dashboard")
 @login_required
 def dashboard():
-    posts = Post.query.all()
-    return render_template("dashboard.html", user=current_user, posts=posts)
+    print(current_user.username)
+    post = Post.query.join(User).filter(User.username == current_user.username).all()
+    return render_template("dashboard.html", user=current_user, posts=post)
 
 @views.route("/getstarted")
 def getStarted():
@@ -50,8 +51,6 @@ def create_post():
 @login_required
 def view_post(post_title):
     post = Post.query.filter(Post.title == post_title).first()
-    print(post.content)
-    print(post.user.username)
     return render_template("view_post.html", user=current_user, post=post)
 @views.route("/posts/<username>", methods = ["GET", "POST"])
 @login_required
