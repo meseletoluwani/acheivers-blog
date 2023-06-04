@@ -2,7 +2,7 @@
 
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 from flask_login import login_required, current_user
-from .models import Post
+from .models import Post, User
 from . import db
 
 views = Blueprint("views", __name__)
@@ -53,3 +53,8 @@ def view_post(post_title):
     print(post.content)
     print(post.user.username)
     return render_template("view_post.html", user=current_user, post=post)
+@views.route("/posts/<username>", methods = ["GET", "POST"])
+@login_required
+def view__user_posts(username):
+    post = Post.query.join(User).filter(User.username == username).all()
+    return render_template("view_user_posts.html", user=current_user, posts=post)
