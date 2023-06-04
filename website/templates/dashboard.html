@@ -28,8 +28,8 @@
     </div>
     <div class="card-body"> 
       <img src="{{post.image}}" alt="">
-      <div class="card-text">{{post.content}}</div> 
-    </div> 
+      <div class="card-text"><a href="/post/{{post.title}}">{{post.title}}</a></div> 
+    </div>
     <div class="card-footer text-muted">{{post.date_created}}</div>
  
 
@@ -38,4 +38,4 @@
 </div>
 {% endblock %}
 
-  
+

@@ -10,6 +10,7 @@ views = Blueprint("views", __name__)
 @views.route("/")
 def home():
     posts = Post.query.all()
+    print(posts[0].user.username)
     return render_template("home.html", user=current_user, posts=posts)
 
 
@@ -45,3 +46,10 @@ def create_post():
             return redirect(url_for("views.home"))
     return render_template("post.html", user=current_user)
 
+@views.route("/post/<post_title>", methods = ["GET", "POST"])
+@login_required
+def view_post(post_title):
+    post = Post.query.filter(Post.title == post_title).first()
+    print(post.content)
+    print(post.user.username)
+    return render_template("view_post.html", user=current_user, post=post)
