@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block head %}
-    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/auth.css') }}">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/post.css') }}">
     <title>Home</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
@@ -8,27 +8,17 @@
 
 {% endblock %}
 
-{% block nav1 %}
-    Home
-{% endblock %}
-{% block nav2 %}
-    Dashboard
-{% endblock %}
-{% block nav3 %}
-    Sign Out
-{% endblock %}
 {% block content %}
-
-
 <div id="post"> 
-  
-  <div class="card border-dark">
-    <div class="card-header d-flex justify-content-between align-items-center">
+    <div class="title">
       <h1>{{post.title}}</h1>
-      <p>{{post.date_created}}</p>
-      <p>By {{post.user.username}}</p>
+      <div>
+        <p>{{post.date_created}}</p>
+        <p>By: {{post.user.username}}</p>
+      </div>
     </div>
-    <div class="card-body"> 
+
+    <div class="body"> 
       <img src="{{post.image}}" alt="">
       <p>{{post.content}}</p>
     </div>
