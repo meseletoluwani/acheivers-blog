@@ -8,10 +8,23 @@ from . import db
 views = Blueprint("views", __name__)
 
 @views.route("/")
+@login_required
 def home():
     posts = Post.query.all()
-    print(posts[0].user.username)
-    return render_template("home.html", user=current_user, posts=posts)
+    print(len(posts))
+    return render_template("home.html", user=current_user, posts=posts, length=len(posts))
+
+@views.route("/posts/post/<number>")
+def paginated_post(number:int):
+    posts = Post.query.all()
+    
+    length = len(posts)
+    print(length)
+    to_end = int(number) * 2
+    to_start = int(to_end) - 2
+    posts = posts[to_start:to_end]
+    return render_template("home.html", user=current_user, posts=posts, length=length)
+
 
 
 @views.route("/dashboard")
