@@ -22,9 +22,11 @@
         <form method="post" action="/signin">
             <label for="username">Username</label>
             <input class="form-control"  type="text" name="username" id="username">
-
-            <label for="password">Password</label>
-            <input class="form-control" type="text" name="password" id="password">
+            <div>
+                <label for="password">Password</label>
+                <input class="form-control" type="password" name="password" id="password" >
+                <i class="fa fa-eye" id="toggle-password" aria-hidden="true" style="margin-left: -30px; cursor: pointer;"></i>    
+            </div>
             <button type="submit">Sign In</button>
         </form>
     </div>
