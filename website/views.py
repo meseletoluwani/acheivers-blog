@@ -8,10 +8,23 @@ from . import db
 views = Blueprint("views", __name__)
 
 @views.route("/")
+@login_required
 def home():
     posts = Post.query.all()
-    print(posts[0].user.username)
-    return render_template("home.html", user=current_user, posts=posts)
+    print(len(posts))
+    return render_template("home.html", user=current_user, posts=posts, length=len(posts))
+
+@views.route("/posts/post/<number>")
+def paginated_post(number:int):
+    posts = Post.query.all()
+    
+    length = len(posts)
+    print(length)
+    to_end = int(number) * 2
+    to_start = int(to_end) - 2
+    posts = posts[to_start:to_end]
+    return render_template("home.html", user=current_user, posts=posts, length=length)
+
 
 
 @views.route("/dashboard")
@@ -46,6 +59,23 @@ def create_post():
             flash("Post created successfully!", category="success")
             return redirect(url_for("views.home"))
     return render_template("post.html", user=current_user)
+
+
+@views.route("/delete-post/<id>")
+@login_required
+def delete_post(id):
+    post = post.query.filter_by(id=id).first()
+
+    if not post:
+        flash("post does not exist.", category= 'error')
+    elif current_user.id != post.id:
+        flash('you do not have permission to delete this post.', category= 'error')
+    else:
+        db.session.delete(post)
+        db.session.commit()
+        flash('post deleted', category='success')
+        
+    return redirect(url_for('views.home'))
 
 @views.route("/post/<post_title>", methods = ["GET", "POST"])
 @login_required
