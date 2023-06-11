@@ -11,12 +11,10 @@ views = Blueprint("views", __name__)
 def home():
     posts = post.query.all("home.html", user=current_user, posts= user.post)
 
-<<<<<<< HEAD
 return render_template()
 
 
  
-=======
 
 @views.route("/getstarted")
 def getStarted():
@@ -44,4 +42,20 @@ def create_post():
             return redirect(url_for("views.home"))
     return render_template("post.html", user=current_user)
 
->>>>>>> c86bdd0861493bff226a0ca2a56612cf985593de
+
+@views.route("/delete-post/<id>")
+@login_required
+def delete_post(id):
+    post = post.query.filter_by(id=id).first()
+
+    if not post:
+        flash("post does not exist.", category= 'error')
+    elif current_user.id != post.id:
+        flash('you do not have permission to delete this post.', category= 'error')
+    else:
+        db.session.delete(post)
+        db.session.commit()
+        flash('post deleted', category='success')
+        
+    return redirect(url_for('views.home'))
+
