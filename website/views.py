@@ -2,19 +2,37 @@
 
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 from flask_login import login_required, current_user
-from .models import Post
+from .models import Post, User
 from . import db
 
 views = Blueprint("views", __name__)
 
 @views.route("/")
+@login_required
 def home():
-    posts = post.query.all("home.html", user=current_user, posts= user.post)
+    posts = Post.query.all()
+    print(len(posts))
+    return render_template("home.html", user=current_user, posts=posts, length=len(posts))
 
-return render_template()
+@views.route("/posts/post/<number>")
+def paginated_post(number:int):
+    posts = Post.query.all()
+    
+    length = len(posts)
+    print(length)
+    to_end = int(number) * 2
+    to_start = int(to_end) - 2
+    posts = posts[to_start:to_end]
+    return render_template("home.html", user=current_user, posts=posts, length=length)
 
 
- 
+
+@views.route("/dashboard")
+@login_required
+def dashboard():
+    print(current_user.username)
+    post = Post.query.join(User).filter(User.username == current_user.username).all()
+    return render_template("dashboard.html", user=current_user, posts=post)
 
 @views.route("/getstarted")
 def getStarted():
@@ -59,3 +77,13 @@ def delete_post(id):
         
     return redirect(url_for('views.home'))
 
+@views.route("/post/<post_title>", methods = ["GET", "POST"])
+@login_required
+def view_post(post_title):
+    post = Post.query.filter(Post.title == post_title).first()
+    return render_template("view_post.html", user=current_user, post=post)
+@views.route("/posts/<username>", methods = ["GET", "POST"])
+@login_required
+def view__user_posts(username):
+    post = Post.query.join(User).filter(User.username == username).all()
+    return render_template("view_user_posts.html", user=current_user, posts=post)

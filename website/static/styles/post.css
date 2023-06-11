@@ -1,0 +1,35 @@
+#post{
+    padding: 7% 15%;
+    font-family: 'Poppins';
+    font-style: normal;
+}
+
+img{
+    width: 100%;
+    margin: 20px 0px
+}
+
+.title h1{
+    color:black;
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+.title div{
+    display: flex;
+    justify-content: center;
+    justify-content: space-evenly;
+    margin: 5px 0;
+}
+
+.title div p{
+    color: #808080;
+    font-weight: 600;
+    font-size: 0.8rem;
+}
+
+.body p{
+    color: black;
+    font-size: 1rem;
+}

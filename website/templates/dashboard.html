@@ -1,4 +1,14 @@
-<h1 align="center">Posts</h1>
+{% extends "base.html" %}
+{% block head %}
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/dashboard.css') }}">
+    <title>Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+
+{% endblock %}
+{% block content %}
+
 <div id="posts"> 
   {% for post in user.post %}  
   <div class="card border-dark">
@@ -26,3 +36,23 @@
 </div>
 {% endblock %}   
    
+  <button class="btn btn-dark" type="button"><a class="post_a" href="/post">Create Post</a></button>
+
+  <div class="row" > 
+    {% for post in posts %}  
+
+    <div class="col-6">
+      <img src="{{post.image}}" alt="">
+      <h1 class="title-h1"><a class="title-a" href="/post/{{post.title}}">{{post.title}}</a></h1>
+      <div class="footer">
+        <p>{{post.date_created}}</p>
+        <a href="/posts/{{post.user.username}}">By: {{post.user.username}}</a>
+      </div>
+    </div>
+   
+  {% endfor %}
+  </div>
+</div>
+{% endblock %}
+
+
