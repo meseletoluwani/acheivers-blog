@@ -11,7 +11,6 @@ views = Blueprint("views", __name__)
 @login_required
 def home():
     posts = Post.query.all()
-    print(len(posts))
     return render_template("home.html", user=current_user, posts=posts, length=len(posts))
 
 @views.route("/posts/post/<number>")
