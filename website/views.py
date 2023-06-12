@@ -30,7 +30,7 @@ def paginated_post(number:int):
 @views.route("/dashboard")
 @login_required
 def dashboard():
-    print(current_user.username)
+    
     post = Post.query.join(User).filter(User.username == current_user.username).all()
     return render_template("dashboard.html", user=current_user, posts=post)
 
@@ -64,7 +64,7 @@ def create_post():
 @views.route("/delete-post/<id>")
 @login_required
 def delete_post(id):
-    post = post.query.filter_by(id=id).first()
+    post = Post.query.filter_by(id=id).first()
 
     if not post:
         flash("post does not exist.", category= 'error')
@@ -90,19 +90,22 @@ def view__user_posts(username):
     post = Post.query.join(User).filter(User.username == username).all()
     return render_template("view_user_posts.html", user=current_user, posts=post)
 
-@views.route("/post/<post_title>/update", methods = ["GET", "POST"])
+@views.route("/update-post/<post_id>", methods = ["GET", "POST"])
 @login_required
-def update_post(post_title):
-    post = Post.query.filter(Post.title == post_title).first()
-    # if post.author != current_user:
-    #     abort(403)
-    title = request.form.get("title")
-    image = request.form.get("image")
-    content = request.form.get("content")
+def update_post(post_id):
+    if request.method == "GET":
+          post = Post.query.filter(Post.id == post_id).first() 
+          return render_template("update_post.html", post=post, user=current_user)
+    
+    
     if request.method == "POST":
+        title = request.form.get("title")
+        image = request.form.get("image")
+        content = request.form.get("content")
+        post = Post.query.filter(Post.id == post_id).first() 
         post.title = title
         post.image = image
         post.content = content
         db.session.commit()
         flash("Post updated successfully", category="success")
-    return render_template("update_post.html", user=current_user,)
+        return redirect(url_for('views.dashboard'))

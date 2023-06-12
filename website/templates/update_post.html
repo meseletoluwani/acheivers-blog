@@ -24,15 +24,15 @@
     <p>Blog Details</p>
     
     <div class="form">
-        <form method="post" action="/update_post">
+        <form method="post" action="/update-post/{{post.id}}">
             <label for="title">Enter Blog Title</label>
-            <input class="form-control"  type="text" name="title" id="title">
+            <input class="form-control"  type="text" name="title" id="title" value={{post.title}}>
 
             <label for="image">Add blog image link</label>
-            <input class="form-control" type="url" name="image" id="image">
+            <input class="form-control" type="url" name="image" id="image" value={{post.image}}>
 
             <label for="content">Enter the blog content below</label>
-            <textarea class="form-control" type="text" name="content" id="content" cols="30" rows="10"></textarea>
+            <textarea class="form-control" type="text" name="content" id="content" cols="30" rows="10">{{post.content}}</textarea>
             <button type="submit">Create Post</button>
         </form>
     </div>
