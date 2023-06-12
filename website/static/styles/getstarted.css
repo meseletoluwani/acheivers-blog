@@ -34,7 +34,7 @@ body{
 }
 
 .getstarted h1{
-    font-size: 60px;
+    font-size: 3.2rem;
     font-weight: 700;
     margin-bottom: 30px;
 }
@@ -61,3 +61,17 @@ body{
 }
 
 
+@media (max-width:680px) {
+    .logo{
+        font-size: 1.6rem;
+    }
+    .getstarted h1{
+        font-size: 2rem; 
+        width: 100%;
+    }
+    .getstarted p{
+        font-size: 0.9rem; 
+        width: 100%;
+    }
+
+}
