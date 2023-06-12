@@ -1,3 +1,7 @@
-flask
+Flask
 Flask-SQLAlchemy
-flask-login
+Flask-login
+SQLAlchemy
+Jinja2
+Werkzeug
+Gunicorn

@@ -10,7 +10,6 @@ views = Blueprint("views", __name__)
 @views.route("/")
 def home():
     posts = Post.query.all()
-    print(len(posts))
     return render_template("home.html", user=current_user, posts=posts, length=len(posts))
 
 @views.route("/posts/post/<number>")
@@ -29,7 +28,7 @@ def paginated_post(number:int):
 @views.route("/dashboard")
 @login_required
 def dashboard():
-    print(current_user.username)
+    
     post = Post.query.join(User).filter(User.username == current_user.username).all()
     return render_template("dashboard.html", user=current_user, posts=post)
 
@@ -89,17 +88,22 @@ def view__user_posts(username):
     post = Post.query.join(User).filter(User.username == username).all()
     return render_template("view_user_posts.html", user=current_user, posts=post)
 
-@views.route("/update/<id>", methods = ["GET", "POST"])
+@views.route("/update-post/<post_id>", methods = ["GET", "POST"])
 @login_required
-def update_post(id):
-    post = Post.query.filter_by(id=id).first()
-    if current_user.id != post.author:
-        abort(403)
+def update_post(post_id):
+    if request.method == "GET":
+          post = Post.query.filter(Post.id == post_id).first() 
+          return render_template("update_post.html", post=post, user=current_user)
+    
+    
     if request.method == "POST":
-        post.title = request.form.get("title")
-        post.image = request.form.get("image")
-        post.content = request.form.get("content")
+        title = request.form.get("title")
+        image = request.form.get("image")
+        content = request.form.get("content")
+        post = Post.query.filter(Post.id == post_id).first() 
+        post.title = title
+        post.image = image
+        post.content = content
         db.session.commit()
         flash("Post updated successfully", category="success")
-        return redirect(url_for("views.home"))
-    return render_template("update_post.html", user=current_user, post=post)
+        return redirect(url_for('views.dashboard'))

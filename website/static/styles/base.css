@@ -1,3 +1,7 @@
+html{
+    font-size: calc(12px + 0.390625vw);
+}
+
 
 #container{
     padding: 15px 5px 20px;
@@ -39,3 +43,9 @@
     margin-left: 5px;
 }
 
+
+@media (max-width:680px) {
+    .logo{
+        font-size: 1.6rem;
+    }
+}

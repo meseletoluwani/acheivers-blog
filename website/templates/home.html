@@ -15,7 +15,7 @@
 <div id="posts" class="row" > 
   {% for post in posts[:2] %}  
 
-    <div class="col-6">
+    <div class="col-sm-6">
       <img src="{{post.image}}" alt="">
       <h1 class="title-h1"><a class="title-a" href="/post/{{post.title}}">{{post.title}}</a></h1>
       <div class="footer">
@@ -25,9 +25,12 @@
     </div>
    
    
-    {% endfor %}
-  {% for link in range(1, (length//2) + 2) %}
-  <a href="/posts/post/{{link}}">{{link}}</a>
   {% endfor %}
+  <div id="pagination">
+    {% for link in range(1, (length//2) + 2) %}
+    <a href="/posts/post/{{link}}">{{link}}</a>
+    {% endfor %}
+  </div>
+  
 </div>
 {% endblock %}

@@ -33,7 +33,6 @@ def signup():
         username = request.form.get("username")
         password1 = request.form.get("password1")
         password2 = request.form.get("password2")
-
         username_exists = User.query.filter_by(username=username).first()
 
         if username_exists:

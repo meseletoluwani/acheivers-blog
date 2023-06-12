@@ -9,38 +9,22 @@
 {% endblock %}
 {% block content %}
 
-<div id="posts"> 
-  {% for post in user.post %}  
-  <div class="card border-dark">
-    <div class="card-header d-flex justify-content-between align-items-center">
-      <a href="/posts/{{post.user.username}}">{{post.user.username}}</a>
-      {% if user.id == post.author %}
-        <div class="btn-group">
-          <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-bs-toggle="dropdown"></button>
-            <ul class="dropdown-menu">
-              <li><a href="/delete-post/{{post.id}}" class="dropdown-item">Delete</a></li>
-            </ul>
-        </div>
-      {% endif %}
-    </div>
-    <div class="card-footer text-muted">{{post.date_created}}</div>
-  </div>
-  {% endfor %}
-  <br> 
 
-</div> 
+ 
    
   <button class="btn btn-dark" type="button"><a class="post_a" href="/post">Create Post</a></button>
 
   <div class="row" > 
     {% for post in posts %}  
 
-    <div class="col-6">
+    <div class="col-sm-6">
       <img src="{{post.image}}" alt="">
       <h1 class="title-h1"><a class="title-a" href="/post/{{post.title}}">{{post.title}}</a></h1>
       <div class="footer">
-        <p>{{post.date_created}}</p>
-        <a href="/posts/{{post.user.username}}">By: {{post.user.username}}</a>
+        <p class="date">{{post.date_created}}</p>
+        <a href="/posts/{{post.user.username}}" class="username">By: {{post.user.username}}</a>
+        <a href="/update-post/{{post.id}}" class="update">Edit</a>
+        <a href="/delete-post/{{post.id}}" class="delete">Delete</a>
       </div>
     </div>
    
@@ -48,5 +32,4 @@
   </div>
 </div>
 {% endblock %}
-
 

@@ -1,5 +1,6 @@
 
 
+
 #posts{
     margin-top: 70px;
     padding-left: 8%;
@@ -21,6 +22,7 @@
 }
 .footer{
     display: flex;
+    max-width: 100%;
 }
 
 .title-a{
@@ -39,10 +41,30 @@ img{
     height: 70%;
 }
 
-.footer p, .footer a{
-    margin-right: 20px;
+.footer .date, .footer .username{
     color: #808080;
+}
+
+.footer a, .footer p{
     font-weight: 600;
     text-decoration: none;
     font-size: 0.8rem;
+}
+
+.footer .date{
+    width: 35%;
+}
+
+.footer .username{
+    width: 45%;
+}
+
+.footer .update{
+ color: blue;   
+ width: 10%;
+}
+
+.footer .delete{
+    color: red;
+    width: 10%;
 }
