@@ -24,7 +24,7 @@
     <p>Blog Details</p>
     
     <div class="form">
-        <form method="post" action="/update_post">
+        <form method="post" action="/update/{{post.id}}">
             <label for="title">Enter Blog Title</label>
             <input class="form-control"  type="text" name="title" id="title">
 
@@ -33,7 +33,7 @@
 
             <label for="content">Enter the blog content below</label>
             <textarea class="form-control" type="text" name="content" id="content" cols="30" rows="10"></textarea>
-            <button type="submit">Create Post</button>
+            <button type="submit">Update Post</button>
         </form>
     </div>
 </div>

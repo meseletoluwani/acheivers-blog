@@ -8,7 +8,6 @@ from . import db
 views = Blueprint("views", __name__)
 
 @views.route("/")
-@login_required
 def home():
     posts = Post.query.all()
     print(len(posts))
@@ -64,16 +63,16 @@ def create_post():
 @views.route("/delete-post/<id>")
 @login_required
 def delete_post(id):
-    post = post.query.filter_by(id=id).first()
+    post = Post.query.filter_by(id=id).first()
 
     if not post:
-        flash("post does not exist.", category= 'error')
+        flash("Post does not exist.", category= 'error')
     elif current_user.id != post.id:
-        flash('you do not have permission to delete this post.', category= 'error')
+        flash('You do not have permission to delete this post.', category= 'error')
     else:
         db.session.delete(post)
         db.session.commit()
-        flash('post deleted', category='success')
+        flash('Post deleted', category='success')
         
     return redirect(url_for('views.home'))
 
@@ -90,19 +89,17 @@ def view__user_posts(username):
     post = Post.query.join(User).filter(User.username == username).all()
     return render_template("view_user_posts.html", user=current_user, posts=post)
 
-@views.route("/post/<post_title>/update", methods = ["GET", "POST"])
+@views.route("/update/<id>", methods = ["GET", "POST"])
 @login_required
-def update_post(post_title):
-    post = Post.query.filter(Post.title == post_title).first()
-    # if post.author != current_user:
-    #     abort(403)
-    title = request.form.get("title")
-    image = request.form.get("image")
-    content = request.form.get("content")
+def update_post(id):
+    post = Post.query.filter_by(id=id).first()
+    if current_user.id != post.author:
+        abort(403)
     if request.method == "POST":
-        post.title = title
-        post.image = image
-        post.content = content
+        post.title = request.form.get("title")
+        post.image = request.form.get("image")
+        post.content = request.form.get("content")
         db.session.commit()
         flash("Post updated successfully", category="success")
-    return render_template("update_post.html", user=current_user,)
+        return redirect(url_for("views.home"))
+    return render_template("update_post.html", user=current_user, post=post)
