@@ -19,14 +19,7 @@
 {% endblock %}
 
 
-{% block content%}
-{%with messages = get_flashed_messages(with_categories=True)%}
-      {% if messgaes %}
-        {% for category, message in messages %}
-        {{messages}}
-        {%endfor%}
-      {% endif %}
-    {% endwith %}        
+{% block content%} 
     <div class="form-container">
         
         <h1>Create an account to start.</h1>

@@ -2,13 +2,12 @@
 
 from flask import Blueprint, render_template, request, flash, redirect, url_for, abort
 from flask_login import login_required, current_user
-from .models import Post, User
+from .models import Post, User, Comment
 from . import db
 
 views = Blueprint("views", __name__)
 
 @views.route("/")
-@login_required
 def home():
     posts = Post.query.all()
     return render_template("home.html", user=current_user, posts=posts, length=len(posts))
@@ -66,13 +65,13 @@ def delete_post(id):
     post = Post.query.filter_by(id=id).first()
 
     if not post:
-        flash("post does not exist.", category= 'error')
+        flash("Post does not exist.", category= 'error')
     elif current_user.id != post.id:
-        flash('you do not have permission to delete this post.', category= 'error')
+        flash('You do not have permission to delete this post.', category= 'error')
     else:
         db.session.delete(post)
         db.session.commit()
-        flash('post deleted', category='success')
+        flash('Post deleted', category='success')
         
     return redirect(url_for('views.home'))
 
@@ -108,3 +107,24 @@ def update_post(post_id):
         db.session.commit()
         flash("Post updated successfully", category="success")
         return redirect(url_for('views.dashboard'))
+    
+@views.route("/comment/<post_id>", methods=["POST"])
+@login_required
+def comment(post_id):
+    content = request.form.get("content")
+
+    if not content:
+        flash("Comment field cannot be empty!", category="error")
+    
+    else:
+        post = Post.query.filter_by(id=post_id)
+        if post:
+            comment = Comment(content=content, author=current_user.id, post_id=post_id)
+            db.session.add(comment)
+            db.session.commit()
+            flash("Comment posted!", category="success")
+        else:
+            flash("Post does not exist", category="error")
+
+    return redirect(url_for("views.home"))
+
