@@ -32,6 +32,9 @@
                 </div>
                 <div>
                   <small class="text-muted">{{comment.date_created}}</small>
+                  {% if user.id == comment.author or user.id == post.author %}
+                    <a href="/delete-comment/{{comment.id}}" class="delete">Delete</a>
+                  {% endif %}
                 </div>
               </div>
               <br />
