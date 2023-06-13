@@ -21,6 +21,39 @@
     <div class="body"> 
       <img src="{{post.image}}" alt="">
       <p>{{post.content}}</p>
+      <br />
+      <div class="collapse" id="comment-{{post.id}}">
+        <div class="card">
+          <div class="card-body" id="comments-expanded-{{post.id}}">
+            {% for comment in post.comments %}
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <a href="/posts/{{comment.user.username}}">{{comment.user.username}}</a>: {{comment.content}}
+                </div>
+                <div>
+                  <small class="text-muted">{{comment.date_created}}</small>
+                </div>
+              </div>
+              <br />
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <p class="card-text">
+        {% if post.comments|length > 0 %}
+        <a data-bs-toggle="collapse" href="#comment-{{post.id}}" role="button">
+          <small>View all Comments</small>
+        </a>
+
+        {% else %}
+          <small class="text-muted">No comments</small>
+        {% endif %}
+      </p>
+      <br />
+      <form class="input-group mb-3" method="POST" action="/comment/{{post.id}}">
+        <input type="text" name="content" id="content" class="form-control" placeholder="Comment Something!">
+        <button type="submit" class="btn btn-primary">Comment</button>
+      </form>
     </div>
 </div>
 {% endblock %}

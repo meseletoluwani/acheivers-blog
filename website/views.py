@@ -2,7 +2,7 @@
 
 from flask import Blueprint, render_template, request, flash, redirect, url_for, abort
 from flask_login import login_required, current_user
-from .models import Post, User
+from .models import Post, User, Comment
 from . import db
 
 views = Blueprint("views", __name__)
@@ -107,3 +107,24 @@ def update_post(post_id):
         db.session.commit()
         flash("Post updated successfully", category="success")
         return redirect(url_for('views.dashboard'))
+    
+@views.route("/comment/<post_id>", methods=["POST"])
+@login_required
+def comment(post_id):
+    content = request.form.get("content")
+
+    if not content:
+        flash("Comment field cannot be empty!", category="error")
+    
+    else:
+        post = Post.query.filter_by(id=post_id)
+        if post:
+            comment = Comment(content=content, author=current_user.id, post_id=post_id)
+            db.session.add(comment)
+            db.session.commit()
+            flash("Comment posted!", category="success")
+        else:
+            flash("Post does not exist", category="error")
+
+    return redirect(url_for("views.home"))
+
