@@ -68,3 +68,9 @@ img{
     color: red;
     width: 10%;
 }
+
+@media (max-width:571px) {
+    .row{
+        padding: 0 2%;
+    }
+}

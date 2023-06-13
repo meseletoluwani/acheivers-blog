@@ -26,21 +26,21 @@
         <div class="collapse navbar-collapse nav-links" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-                <a class="nav-link" href="/">{% block nav1 %}Home{% endblock %}</a>
+                <a class="nav-link" href="/">Home</a>
               </li>
               {% if user.is_authenticated %}
               <li class="nav-item">
-                <a class="nav-link" href="/dashboard">{% block nav2 %}Dashboard{% endblock %}</a>
+                <a class="nav-link" href="/dashboard">Dashboard</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/signout">{% block nav3 %}Sign Out{% endblock %}</a>
+                <a class="nav-link" href="/signout">Sign Out</a>
               </li>
               {% else %}
               <li class="nav-item">
-                <a class="nav-link" href="/getstarted">{% block nav4 %}Get Started{% endblock %}</a>
+                <a class="nav-link" href="/getstarted">Get Started</a>
               </li>
               <li class="nav-item nav-button">
-                <a class="nav-link button" href="signin">{% block nav5 %}{% endblock %}</a>
+                {% block nav %}{% endblock %}
               </li>
               {%endif%}
         </ul>

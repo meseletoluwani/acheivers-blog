@@ -30,7 +30,7 @@ body{
 .getstarted{
     margin-top: 40px;
     text-align: center;
-    padding: 40px 32% 20px;
+    padding: 40px 18% 20px;
 }
 
 .getstarted h1{
@@ -42,6 +42,7 @@ body{
 .getstarted p{
     font-size: 23px;
     font-weight: 400;
+    margin-bottom: 30px;
 }
 
 .center{
@@ -62,16 +63,8 @@ body{
 
 
 @media (max-width:680px) {
-    .logo{
-        font-size: 1.6rem;
-    }
-    .getstarted h1{
-        font-size: 2rem; 
-        width: 100%;
-    }
-    .getstarted p{
-        font-size: 0.9rem; 
-        width: 100%;
-    }
+  .getstarted{
+    padding: 40px 7% 20px;
+  }
 
 }
