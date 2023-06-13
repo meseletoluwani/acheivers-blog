@@ -24,10 +24,14 @@
         <p class="date">{{post.date_created}}</p>
         <a href="/posts/{{post.user.username}}" class="username">By: {{post.user.username}}</a>
         <a href="/update-post/{{post.id}}" class="update">Edit</a>
-        <a href="/delete-post/{{post.id}}" class="delete">Delete</a>
+        <p class="delete" id="{{post.id}}">Delete</p>
       </div>
     </div>
-   
+    <div class="pop-up{{post.id}} none">
+      <p class="warning-popup">Are you sure you want to delete?</p>
+      <a href="/delete-post/{{post.id}}"  style="color: red; text-decoration: none;">Yes</a>
+      <p class="kill-popup" id="{{post.id}}" style="color: blue;">No</p>
+    </div>
     {% endfor %}
   </div>
 </div>

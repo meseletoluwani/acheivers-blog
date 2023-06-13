@@ -23,3 +23,15 @@ $("#toggle-password").click(function() {
         clicked2++
     }
   } );
+
+$(".delete").click(function(){
+    let to_select = ".pop-up" + String(this.id)
+    $(to_select).removeClass("none")
+    $(to_select).addClass("display-popup")
+})
+
+$(".kill-popup").click(function(){
+    let to_select = ".pop-up" + String(this.id)
+    $(to_select).addClass("none")
+    $(to_select).removeClass("display-popup")
+})

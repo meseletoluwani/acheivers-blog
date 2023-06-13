@@ -1,4 +1,20 @@
+.display-popup{
+    display: block;
+    position: absolute;
+    top: 200px;
+    left: 360px;
+    background-color: #fff;
+    border: 0;
+    border-radius: 10px;
+    width: 250px;
+    padding: 20px 10px;
+    color: black;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+}
 
+.none{
+    display: none;
+}
 
 
 #posts{
