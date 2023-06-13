@@ -20,19 +20,10 @@
     border-radius: 7px;
 }
 
-#toggle-password{
+.eye-password{
     position: relative;
     right: -371px;
-    top: 57%;
     transform: translateY(-280%);
-    cursor: pointer;
-}
-
-#toggle-password2{
-    position: relative;
-    right: -371px;
-    top: 57%;
-    transform: translateY(-370%);
     cursor: pointer;
 }
 
@@ -41,8 +32,7 @@
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 700;
-    font-size: 26px;
-    line-height: 140%;
+    line-height: 1.5;
     /* identical to box height, or 45px */
 
     letter-spacing: -0.02em;
@@ -82,4 +72,18 @@ label{
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 500;
+}
+
+@media (max-width:395px) {
+    .form{
+        width: 340px;        
+    }
+    .eye-password{
+        right: -340px;
+        transform: translateY(-305%);
+    }
+    .eye-password{
+        right: -340px;
+        transform: translateY(-305%);
+    }
 }
